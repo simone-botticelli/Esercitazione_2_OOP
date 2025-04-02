@@ -1,4 +1,5 @@
 #pragma once
+#include <cmath>
 
 template<typename F> requires std::floating_point<F>
 class complex
