@@ -162,6 +162,18 @@ operator*=(const F& f, complex<F>& c)
 template<typename F>
 std::ostream&
 operator<<(std::ostream& os, const complex<F>& c) {
-    os << c.Re() << std::showpos << c.Im() << "i";
+	const F epsilon = std::numeric_limits<F>::epsilon();
+	
+	if (std::abs(c.Im()) > epsilon) {
+        if (std::abs(c.Re()) > epsilon) {
+	        os << c.Re()<< std::showpos << c.Im() << "i" << std::noshowpos;
+        }
+        else {
+	        os << c.Im() << "i";
+        }
+    }
+    else {
+    	os << c.Re();
+    }
     return os;
 }
